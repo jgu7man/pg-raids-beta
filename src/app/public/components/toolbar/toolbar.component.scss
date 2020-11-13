@@ -1,0 +1,17 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo-container {
+    position: relative;
+    width: 50px;
+    img {
+      width: 100%;
+      display: flex;
+    }
+}
+
+#topbar {
+  position: fixed;
+  z-index: 10;
+}

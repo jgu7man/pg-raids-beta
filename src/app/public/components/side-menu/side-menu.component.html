@@ -1,0 +1,38 @@
+<p class="close">
+    <i class="fas fa-times fa-lg fa-fw"
+    (click)="public_.menuTrigger.next(false)"
+    ></i>
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col s10">
+            <p class="mid">
+                Jugador activo
+            </p>
+            <p class="data">
+                <b>Nickname:</b> <span class="data">
+                    {{player.nickname}}
+                </span>
+            </p>
+            <p class="data">
+                <b>Código:</b> <span class="data">
+                    {{player.pg_code | mask: '0000 0000 0000'}}
+                </span>
+            </p>
+        </div>
+        <div class="col s2">
+            <button mat-icon-button
+            (click)="editPlayer()">
+                <i class="fas fa-edit fa-lg fa-fw"></i>
+            </button>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row" id="credits">
+        <div class="col s12 center">
+            Desarrollo de marxadigital <br>
+            hola@marxadigital.com
+        </div>
+    </div>
+</div>

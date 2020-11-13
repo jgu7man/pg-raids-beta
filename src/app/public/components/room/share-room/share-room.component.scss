@@ -1,0 +1,15 @@
+.close {
+    text-align: right;
+}
+
+#sharebox-content{
+    display: flex;
+    flex-flow: wrap row;
+    margin: .5em;
+    justify-content: space-evenly;
+    overflow: visible;
+    button {
+        align-self: center;
+        margin: 3%;
+    }
+}

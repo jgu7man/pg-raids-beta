@@ -1,0 +1,19 @@
+
+#bottom-bar {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    .sec-button {
+        width: 50%;
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        
+    }
+}
+
+
+.sec-button.active i {
+    color: #ffd700 !important;
+}
+

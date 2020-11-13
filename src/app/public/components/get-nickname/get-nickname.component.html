@@ -1,0 +1,58 @@
+<ng-container *ngIf="getData; else ready">
+    <form action="#" #playerData="ngForm">
+        <h3 mat-dialog-title>
+            Agrega tu nick name
+        </h3>
+    
+        <mat-dialog-content>
+            <mat-form-field>
+                <mat-label>Nickname</mat-label>
+                <input
+                matInput
+                type="text"
+                [(ngModel)]="member.nickname"
+                name="nickname"
+                #nickname="ngModel"
+                required
+                >
+                <mat-error *ngIf="nickname.invalid
+                || (nickname.dirty && nickname.touched)">
+                    Es necesario que agregues tu nickname del juego para que puedas participar
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Código de amistad</mat-label>
+                <input
+                matInput
+                type="text"
+                [(ngModel)]="member.pg_code"
+                name="pg_code"
+                #pg_code="ngModel"
+                required
+                mask="0000 0000 0000"
+                >
+                <mat-error *ngIf="(pg_code.dirty && pg_code.touched)">
+                    Es necesario el código de entrenador para que puedas acceder
+                </mat-error>
+                <mat-error *ngIf="pg_code.invalid">
+                    No tiene la cantidad de dígitos correcta
+                </mat-error>
+            </mat-form-field>
+        </mat-dialog-content>
+    
+        <mat-dialog-actions
+        style="display: flex; justify-content: center;">
+            <button mat-raised-button
+            color="primary"
+            (click)="onSave()"
+            [disabled]="playerData.invalid"
+            >Guardar</button>
+        </mat-dialog-actions>
+    </form>
+</ng-container>
+<ng-template #ready>
+    <div class="center" id="ready-icon">
+        <h1 mat-dialog-title>Listo!</h1>
+        <i class="fas fa-check-circle fa-10x green-text"></i>
+    </div>
+</ng-template>

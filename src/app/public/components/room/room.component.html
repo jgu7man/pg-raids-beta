@@ -1,0 +1,218 @@
+
+<div class="container">
+    
+    
+    
+    <!-- START ROOM HEADER -->
+    <div class="row">
+        <div class="col s12 center">
+            <p class="mid center">
+                ¡Vamos por <span class="data">{{room.poke_name}}</span>!
+            </p>
+            <p class="mid center">
+                en el gimnasio <span class="data">{{room.gym_name}}</span>
+            </p>
+            <p class="center">
+                ubicado en <span class="data">{{room.place}}</span>
+            </p>
+            <p class="center" *ngIf="room.cords">
+                cords: {{room.cords.lat}} - {{room.cords.long}}
+            </p>
+        </div>
+        <div class="col s12" id="countdown" *ngIf="future">
+            <app-countdown [future]="future"></app-countdown>
+            <p>Segundos para el encuentro</p>
+        </div>
+    </div>
+    <!-- END ROOM HEADER -->
+
+
+
+    <!-- START HOST INFO -->
+    <div class="row" *ngIf="room.poke_name">
+        <div class="col s12 center" id="hoster_info" 
+        (click)="clipPlayerCode(room.host.pg_code)">
+            <p class="large">
+                <b>Hoster: </b>
+                <span class="data">{{room.host.nickname}}</span>
+            </p>
+            <span class="data">{{room.host.pg_code | mask: '0000 0000 0000'}}</span>
+        </div>
+    </div>
+    <!-- END HOST INFO -->
+
+
+
+    <!-- START BUTTONS -->
+    <div class="row center" id="actions-bar">
+        <div class="col s4">
+            <button mat-raised-button
+            (click)="openAddMember()"
+            color="accent"
+            >
+                Agregar miembro
+            </button>
+            
+        </div>
+        <div class="col s4"
+        (click)="openShareDialog()">
+            <i class="fas fa-share-alt fa-2x"></i>
+        </div>
+        <div class="col s4">
+            <button mat-raised-button
+            [disabled]="!isHost()"
+            color="primary"
+            (click)="eliminarSala()">
+                Eliminar Sala
+            </button>
+        </div>
+    </div>
+    <!-- END BUTTONS -->
+
+
+
+
+    <!-- START LISTS -->
+    <div class="row">
+        <div class="col s12 center">
+            <p>Súmate a esta incursión</p>
+            
+            
+            <!-- START PLACED -->
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        Presenciales
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        Si estas cerca del gimnasio y puedes acercarte físicamente. Inscríbete aquí
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item *ngFor="let member of room.placed_members" class="member">
+                            <p matLine class="mid nickname"
+                            (click)="clipPlayerCode(member.pg_code)">
+                                @{{member.nickname}} - 
+                                <span class="thin">
+                                    {{member.pg_code | mask: '0000 0000 0000'}}
+                                </span>  
+                                <span *ngIf="member.nickname == room.host.nickname">
+                                    <i class="fas fa-user-circle"></i>
+                                </span>
+                            </p>
+                            <div class="delete"
+                            *ngIf="isHost()"
+                            (click)="deleteMember('placed')">
+                                <i class="fas fa-trash red-text   "></i>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <mat-card-actions class="list-actions">
+                    <button mat-icon-button
+                    (click)="validateMembers('placed')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+            <!-- END PLACED -->
+
+
+
+            <!-- START REMOTE -->
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        Remotos
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        Si estas cerca del gimnasio pero no puedes acercarte físicamente, usa pase remoto. Inscríbete aquí
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item *ngFor="let member of room.remote_members" class="member">
+                            <p matLine class="mid nickname"
+                            (click)="clipPlayerCode(member.pg_code)">
+                                @{{member.nickname}} - 
+                                <span class="thin">
+                                    {{member.pg_code | mask: '0000 0000 0000'}}
+                                </span>  
+                                <span *ngIf="member.nickname == room.host.nickname">
+                                    <i class="fas fa-user-circle"></i>
+                                </span>
+                            </p>
+                            <div class="delete" 
+                            *ngIf="isHost()"
+                            (click)="deleteMember('remote')">
+                                <i class="fas fa-trash red-text   "></i>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <mat-card-actions class="list-actions">
+                    <button mat-icon-button
+                    (click)="validateMembers('remote')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+
+            <!-- END REMOTE -->
+
+
+
+
+            <!-- START INVITED -->
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        Invitados
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        Si no estás cerca del gimnasio pero conoces al hoster o a alguno de los presenciales o remotos. Solicita que te inviten
+                    </mat-card-subtitle>
+                </mat-card-header>
+               <mat-card-content>
+                    <mat-list>
+                        <mat-list-item *ngFor="let member of room.invited_members" class="member">
+                            <p matLine class="mid nickname"
+                            (click)="clipPlayerCode(member.pg_code)">
+                                @{{member.nickname}} - 
+                                <span class="thin">
+                                    {{member.pg_code | mask: '0000 0000 0000'}}
+                                </span>  
+                                
+                            </p>
+                            <p matLine *ngIf="member.by; else request">
+                                Invitado por: @{{member.by}}
+                            </p>
+                            <ng-template #request>
+                                <button mat-button class="request-btn" 
+                                (click)="aceptRequest(member.pg_code)">
+                                    Solicita invitación
+                                </button>
+                            </ng-template>
+                            <div class="delete"
+                            *ngIf="isHost()"
+                            (click)="deleteMember('invited')">
+                                <i class="fas fa-trash red-text   "></i>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <mat-card-actions class="list-actions">
+                    <button mat-icon-button
+                    (click)="validateMembers('invited')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </mat-card-actions>
+                
+            </mat-card>
+            <!-- END INVITED -->
+
+
+        </div>
+    </div>
+</div>

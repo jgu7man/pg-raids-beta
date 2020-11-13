@@ -1,0 +1,53 @@
+<h3 mat-dialog-title>Agregar miembro a la sala</h3>
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Nickname</mat-label>
+        <input
+        matInput
+        type="text"
+        [(ngModel)]="memberAdded.player.nickname"
+        name="nickname"
+        #nickname="ngModel"
+        required
+        >
+        <mat-error *ngIf="nickname.invalid
+        || (nickname.dirty && nickname.touched)">
+            Es necesario el nickname de tu invitado
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Código de amistad</mat-label>
+        <input
+        matInput
+        type="text"
+        [(ngModel)]="memberAdded.player.pg_code"
+        name="pg_code"
+        #pg_code="ngModel"
+        required
+        mask="0000 0000 0000"
+        >
+        <mat-error *ngIf="pg_code.invalid
+        || (pg_code.dirty && pg_code.touched)">
+            Es necesario el código de amistad
+        </mat-error>
+    </mat-form-field>
+    
+
+    <mat-select placeholder="Lista" [(ngModel)]="memberAdded.list" name="lista">
+        <mat-option *ngFor="let lista of lists" [value]="lista.value">
+            {{lista.display}}
+        </mat-option>
+    </mat-select>
+
+</mat-dialog-content>
+<mat-dialog-actions
+style="display: flex; justify-content: space-around;">
+    <button mat-raised-button
+    (click)="dialog_.close()"
+    >Cancelar</button>
+    <button mat-raised-button
+    color="primary"
+    (click)="capture()"
+    >Aceptar</button>
+</mat-dialog-actions>

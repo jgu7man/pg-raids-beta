@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pg-raids": {
+      "hosting": {
+        "pg-raids": [
+          "pg-raids"
+        ]
+      }
+    }
+  }
+}

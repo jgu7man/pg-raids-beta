@@ -1,0 +1,15 @@
+.sideMenu {
+    @media screen and (max-width: 450px){
+        min-width: 100vw;
+    }
+    @media screen and (min-width: 450px){
+        min-width: 20vw;
+    }
+}
+
+
+mat-drawer-container {
+    min-height: 93vw;
+    padding-bottom: 5em;
+    padding-top: 5em;
+}

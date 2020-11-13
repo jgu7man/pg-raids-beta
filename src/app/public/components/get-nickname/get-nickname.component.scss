@@ -1,0 +1,13 @@
+#ready-icon {
+    i {
+        text-shadow: 2px 2px 4px rgba($color: #000000, $alpha: .5);
+        animation: twist .5s;
+        animation-delay: 1000;
+        animation-iteration-count: 1;
+    }
+}
+
+@keyframes twist {
+    from {font-size: .1em;transform: rotate(-360deg); }
+    to {font-size: 10em;transform: rotate(360deg); }
+}

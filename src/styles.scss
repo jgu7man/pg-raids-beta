@@ -1,0 +1,85 @@
+
+@import '~@angular/material/theming';
+
+@import './pokemon-pallete.scss';
+@import "./assets/css/colors.css";
+@import "./assets/css/normalize.css";
+@import "./assets/css/responsive.css";
+@import "./assets/css/text.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+@include mat-core();
+
+
+
+
+$pg-raids-primary: mat-palette($pg-red);
+$pg-raids-accent: mat-palette($pg-blue, 900, 700, 500);
+
+// The warn palette is optional (defaults to red).
+$pg-raids-warn: mat-palette($pg-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$pg-raids-theme: mat-light-theme($pg-raids-primary, $pg-raids-accent, $pg-raids-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($pg-raids-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Poppins', sans-serif; }
+* {
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+::ng-deep {
+    .timepicker__header {
+        background-color: #b20000;
+    }
+    .clock-face__number > span.active {
+        background-color: #b20000;
+    }
+    .clock-face__clock-hand {
+        background-color: #b20000;
+    }
+    .timepicker-button {
+        color: var(--button-color);
+    }
+}
+
+.thin {
+    font-size: small;
+}
+
+.mid {
+    font-size: 1.5em;
+}
+
+.large {
+    font-size: 2em;
+}
+
+.data, .fas, .far {
+    color: royalblue;
+}
+
+.local, p {
+    color: rgb(27, 48, 109);;
+}
+
+p {
+    font-weight: 700;
+}
+
+mat-card {
+    margin-bottom: 1em;
+}

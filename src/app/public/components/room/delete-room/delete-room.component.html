@@ -1,0 +1,12 @@
+<h4 mat-dialog-title>¿Deseas elimiar esta sala?</h4>
+<mat-dialog-actions
+style="display: flex; justify-content: space-around;">
+    <button mat-raised-button
+    (click)="dialog_.close()"
+    >Cancelar</button>
+    <button mat-raised-button
+    color="primary"
+    (click)="rooms_.deleteRoom(roomId)"
+    (click)="dialog_.close()"
+    >Aceptar</button>
+</mat-dialog-actions>

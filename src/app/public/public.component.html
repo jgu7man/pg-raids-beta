@@ -1,0 +1,10 @@
+<app-toolbar></app-toolbar>
+<mat-drawer-container>
+    <mat-drawer class="sideMenu" #sideMenu="matDrawer" position="end">
+        <app-side-menu></app-side-menu>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
+<app-bottom-bar></app-bottom-bar>

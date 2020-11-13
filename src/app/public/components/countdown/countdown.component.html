@@ -1,0 +1,6 @@
+<h1 
+class="data" 
+[ngClass]="{'red-text': (timer$ | async) < 60}"
+>
+    {{ timer$ | async | time}}
+</h1>

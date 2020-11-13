@@ -1,0 +1,14 @@
+::ng-deep {
+    .timepicker__header {
+        background-color: #b20000;
+    }
+    .clock-face__number > span.active {
+        background-color: #b20000;
+    }
+    .clock-face__clock-hand {
+        background-color: #b20000;
+    }
+    .timepicker-button {
+        color: var(--button-color);
+    }
+}

@@ -1,0 +1,52 @@
+<div id="sharebox-container">
+    <div class="close" mat-dialog-close>
+        <i class="fas fa-times fa-lg fa-fw"></i>
+    </div>
+    <p mat-dialog-title class="center">Comparte el link de la sala</p>
+    
+    
+    
+    <mat-dialog-content id="sharebox-content">
+        <button mat-fab shareButton="whatsapp"
+        #whatsapp="shareButton"
+        [style.backgroundColor]="whatsapp?.color"
+        >
+            <i class="fab fa-whatsapp fa-lg fa-fw"></i>
+        </button>
+        
+        <button mat-fab shareButton="telegram"
+        #telegram="shareButton"
+        [style.backgroundColor]="telegram?.color"
+        >
+            <i class="fab fa-telegram-plane fa-lg fa-fw"></i>
+        </button>
+        
+        <button mat-fab shareButton="messenger"
+        #messenger="shareButton"
+        [style.backgroundColor]="messenger?.color"
+        >
+            <i class="fab fa-facebook-messenger fa-lg fa-fw"></i>
+        </button>
+
+        <button mat-fab shareButton="copy"
+        #copy="shareButton"
+        color="white"
+        >
+            <i class="fas fa-copy fa-lg fa-fw"></i>
+        </button>
+        
+        <button mat-fab shareButton="sms"
+        #sms="shareButton"
+        [style.backgroundColor]="sms?.color"
+        >
+            <i class="fas fa-sms fa-lg fa-fw"></i>
+        </button>
+        
+        <button mat-fab shareButton="line"
+        #line="shareButton"
+        [style.backgroundColor]="line?.color"
+        >
+            <i class="fab fa-line fa-lg fa-fw"></i>
+        </button>
+    </mat-dialog-content>
+</div>
